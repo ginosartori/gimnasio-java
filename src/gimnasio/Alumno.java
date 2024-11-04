@@ -52,9 +52,5 @@ public class Alumno extends Persona {
     }
     
     //Método para asignarle a un alumno un tipo de entrenamiento o tipos de entrenamientos.
-    
-        
-        
-        
     }
 
