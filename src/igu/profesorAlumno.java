@@ -303,6 +303,11 @@ public class profesorAlumno extends javax.swing.JFrame {
             String correo = txtCorreo.getText();
             String plan = txtPlan.getText();
 
+            if (!txtPlan.getText().equalsIgnoreCase("Musculación") && !txtPlan.getText().equalsIgnoreCase("Yoga")) {
+                JOptionPane.showMessageDialog(rootPane, "Por favor, ingrese un plan dentro de los existentes.");
+                return;
+            }
+
             Alumno.inscribirAlumno(nombre, dni, correo, plan);
 
             JOptionPane.showMessageDialog(rootPane, "Cliente registrado correctamente.");
@@ -329,6 +334,28 @@ public class profesorAlumno extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnAsignarActionPerformed
 
+    /* Metodo que no se como implementar correctamente para validar las entradas. (problemas con DNI)
+    private void validacionEntradas(String nombre, String correo, String disciplina, String plan) {
+        String select = btnCombo.getSelectedItem().toString();
+        switch (select) {
+            case "Alumnos":
+                if (nombre.isEmpty() || correo.isEmpty() || plan.isEmpty()) {
+                    JOptionPane.showMessageDialog(rootPane, "Complete la información en todos los campos.");
+                    
+                }
+                break;
+
+            case "Profesores":
+                if (nombre.isEmpty() || correo.isEmpty() || disciplina.isEmpty()) {
+                    JOptionPane.showMessageDialog(rootPane, "Complete la información en todos los campos.");
+                    
+                }
+                break;
+        }
+        return;
+        
+    }
+     */
     private void txtPlanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPlanActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPlanActionPerformed
@@ -364,7 +391,7 @@ public class profesorAlumno extends javax.swing.JFrame {
 
     }
 
-   
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlumnoProfesor;
     private javax.swing.JButton btnAsignar;

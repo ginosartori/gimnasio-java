@@ -27,17 +27,17 @@ public class Bdd extends javax.swing.JFrame {
     public Bdd() {
         initComponents();
 
-        String ids[] = {"Nombre", "Documento", "Correo Electrónico", "Disciplina", "Plan"};
+        String ids[] = {"Tipo", "Nombre", "Documento", "Correo Electrónico", "Disciplina", "Plan"};
         mt.setColumnIdentifiers(ids);
         jTable1.setModel(mt);
 
         for (Profesor profesor : profesores) {
-            mt.addRow(new Object[]{profesor.getNombre(), profesor.getDni(), profesor.getCorreo(), profesor.getDisciplina()});
+            mt.addRow(new Object[]{"Profesor", profesor.getNombre(), profesor.getDni(), profesor.getCorreo(), profesor.getDisciplina()});
         }
 
         for (Alumno alumn : alumnos) {
            
-            mt.addRow(new Object[]{alumn.getNombre(), alumn.getDni(), alumn.getCorreo(), "", alumn.getPlan()});
+            mt.addRow(new Object[]{"Alumno", alumn.getNombre(), alumn.getDni(), alumn.getCorreo(), "", alumn.getPlan()});
         }
     }
 
