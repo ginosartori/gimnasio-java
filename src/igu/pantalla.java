@@ -71,7 +71,7 @@ public class pantalla extends javax.swing.JFrame {
         lblNombre.setFont(new java.awt.Font("Monocraft", 1, 36)); // NOI18N
         lblNombre.setForeground(new java.awt.Color(0, 0, 0));
         lblNombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblNombre.setText("Santo Training Center");
+        lblNombre.setText("Java Training Center");
         lblNombre.setToolTipText("");
         lblNombre.setAlignmentX(300.0F);
         lblNombre.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
@@ -108,6 +108,11 @@ public class pantalla extends javax.swing.JFrame {
         btnPlanes.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         btnPlanes.setForeground(new java.awt.Color(0, 0, 0));
         btnPlanes.setText("Planes");
+        btnPlanes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPlanesActionPerformed(evt);
+            }
+        });
 
         btnDisciplina.setBackground(new java.awt.Color(255, 255, 255));
         btnDisciplina.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
@@ -123,6 +128,11 @@ public class pantalla extends javax.swing.JFrame {
         btnBdd.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         btnBdd.setForeground(new java.awt.Color(0, 0, 0));
         btnBdd.setText("Base de datos");
+        btnBdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBddActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -190,14 +200,24 @@ public class pantalla extends javax.swing.JFrame {
         profesorAlumno newframe = new profesorAlumno();
         newframe.setVisible(true);
         this.dispose();
-        
-        
+
+
     }//GEN-LAST:event_btnAlumnoProfesorActionPerformed
+
+    private void btnBddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBddActionPerformed
+        Bdd bdd = new Bdd();
+        bdd.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnBddActionPerformed
+
+    private void btnPlanesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlanesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnPlanesActionPerformed
 
     /*
      * @param args the command line arguments
      */
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlumnoProfesor;
     private javax.swing.JButton btnBdd;

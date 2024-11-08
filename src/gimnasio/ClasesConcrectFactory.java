@@ -21,16 +21,9 @@ public class ClasesConcrectFactory implements ClasesAbstractFactory {
             case "Musculación":
                 return new Musculacion("Musculación", 00, 60);
 
-            case "Pilates":
-                return new Pilates("Pilates", 120, 15);
-
-            case "Spinning":
-                return new Spinning("Spinning", 60, 20);
-
             default:
                 throw new IllegalArgumentException("Disciplina no válida" + disciplina);
         }
-    
 
     }
 

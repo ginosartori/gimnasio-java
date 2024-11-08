@@ -4,17 +4,41 @@
  */
 package igu;
 
+import gimnasio.Alumno;
+import gimnasio.Profesor;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author usuario
  */
 public class Bdd extends javax.swing.JFrame {
 
+    ArrayList<Profesor> profesores = Profesor.getProfesores();
+    ArrayList<Alumno> alumnos = Alumno.getAlumnos();
+    DefaultTableModel mt = new DefaultTableModel();
+
+    private Object alumno;
+
     /**
      * Creates new form Bdd
      */
     public Bdd() {
         initComponents();
+
+        String ids[] = {"Nombre", "Documento", "Correo Electrónico", "Disciplina", "Plan"};
+        mt.setColumnIdentifiers(ids);
+        jTable1.setModel(mt);
+
+        for (Profesor profesor : profesores) {
+            mt.addRow(new Object[]{profesor.getNombre(), profesor.getDni(), profesor.getCorreo(), profesor.getDisciplina()});
+        }
+
+        for (Alumno alumn : alumnos) {
+           
+            mt.addRow(new Object[]{alumn.getNombre(), alumn.getDni(), alumn.getCorreo(), "", alumn.getPlan()});
+        }
     }
 
     /**
@@ -37,26 +61,27 @@ public class Bdd extends javax.swing.JFrame {
         lblNombre = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(970, 666));
 
         panelMain.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         panelMain.setForeground(new java.awt.Color(0, 0, 0));
         panelMain.setAlignmentX(1.0F);
 
+        jTable1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Nombre", "Documento", "Correo Electrónico", "Disciplina", "Plan"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -69,15 +94,11 @@ public class Bdd extends javax.swing.JFrame {
         panelMain.setLayout(panelMainLayout);
         panelMainLayout.setHorizontalGroup(
             panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelMainLayout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 633, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         panelMainLayout.setVerticalGroup(
             panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelMainLayout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelMainLayout.createSequentialGroup()
                 .addComponent(jScrollPane1)
                 .addContainerGap())
         );
@@ -98,6 +119,11 @@ public class Bdd extends javax.swing.JFrame {
         btnPlanes.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         btnPlanes.setForeground(new java.awt.Color(0, 0, 0));
         btnPlanes.setText("Planes");
+        btnPlanes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPlanesActionPerformed(evt);
+            }
+        });
 
         btnDisciplina.setBackground(new java.awt.Color(255, 255, 255));
         btnDisciplina.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
@@ -144,7 +170,7 @@ public class Bdd extends javax.swing.JFrame {
         lblNombre.setFont(new java.awt.Font("Monocraft", 1, 36)); // NOI18N
         lblNombre.setForeground(new java.awt.Color(0, 0, 0));
         lblNombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblNombre.setText("GIMNASIO JAVA");
+        lblNombre.setText("Java Training Center");
         lblNombre.setToolTipText("");
         lblNombre.setAlignmentX(300.0F);
         lblNombre.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
@@ -157,11 +183,12 @@ public class Bdd extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 958, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(panelMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(panelMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(6, 6, 6)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -192,7 +219,12 @@ public class Bdd extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnDisciplinaActionPerformed
 
-  
+    private void btnPlanesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlanesActionPerformed
+        Planes planes = new Planes();
+        planes.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnPlanesActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlumnoProfesor;

@@ -9,5 +9,5 @@ package gimnasio;
  * @author usuario
  */
 public interface ClasesAbstractFactory {
-    Clases getClases(Profesor profesor);
+    Clases getClases(Profesor nuevoProfesor);
 }

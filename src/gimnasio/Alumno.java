@@ -5,38 +5,35 @@ import java.util.Scanner;
 
 public class Alumno extends Persona {
 
-    private static int contadorId = 0;  // Static para que sea compartido entre todas las instancias
+    protected String plan;
     private int alumnoID;
-    private static ArrayList<Alumno> alumnos = new ArrayList<>();  
+    public static ArrayList<Alumno> alumnos = new ArrayList<>();
+
+    public static ArrayList<Alumno> getAlumnos() {
+        return alumnos;
+    }
     private static Scanner sc = new Scanner(System.in);  //Static por recomendación de gpt para evitar varias instancias de un mismo scanner.
 
-    
     public Alumno() {
     }
 
-    
-    public Alumno(String nombre, int dni, String correo) {
+    public Alumno(String nombre, int dni, String correo, String plan) {
         super(nombre, dni, correo);
-        this.alumnoID = ++contadorId;  //El id se deberia generar automaticamente.
+        this.plan = plan;
     }
 
     @Override
     public void mostrarInfo() {
-        System.out.println("Alumno: " + getNombre() + " | DNI: " + getDni() + " | ID: " + getAlumnoID() + " | Correo: " + getCorreo());
+        System.out.println("Alumno: " + getNombre() + " | DNI: " + getDni() + " | Correo: " + getCorreo());
     }
 
     // Getter para el ID del alumno
-    public int getAlumnoID() {
-        return alumnoID;
-    }
-
     // Método para inscribir un alumno
-    public static void inscribirAlumno(String nombre, int dni, String correo) {
-        
-        Alumno nuevoAlumno = new Alumno(nombre, dni, correo);
+    public static void inscribirAlumno(String nombre, int dni, String correo, String plan) {
+
+        Alumno nuevoAlumno = new Alumno(nombre, dni, correo, plan);
         alumnos.add(nuevoAlumno);
 
-        System.out.println("Alumno inscripto con éxito. ID asignado: " + nuevoAlumno.getAlumnoID());
     }
 
     // Método para mostrar los alumnos inscriptos
@@ -50,11 +47,59 @@ public class Alumno extends Persona {
             }
         }
     }
-    
+
     //Método para asignarle a un alumno un tipo de entrenamiento o tipos de entrenamientos.
-    
-        
-        
-        
+    /**
+     * @return the contadorId
+     *
+     *
+     * /**
+     *
+     */
+    public int getAlumnoID() {
+        return alumnoID;
     }
 
+    /**
+     * @param alumnoID the alumnoID to set
+     */
+    public void setAlumnoID(int alumnoID) {
+        this.alumnoID = alumnoID;
+    }
+
+    /**
+     * @param aAlumnos the alumnos to set
+     */
+    public static void setAlumnos(ArrayList<Alumno> aAlumnos) {
+        alumnos = aAlumnos;
+    }
+
+    /**
+     * @return the sc
+     */
+    public static Scanner getSc() {
+        return sc;
+    }
+
+    /**
+     * @param aSc the sc to set
+     */
+    public static void setSc(Scanner aSc) {
+        sc = aSc;
+    }
+
+    /**
+     * @return the plan
+     */
+    public String getPlan() {
+        return plan;
+    }
+
+    /**
+     * @param plan the plan to set
+     */
+    public void setPlan(String plan) {
+        this.plan = plan;
+    }
+
+}

@@ -6,8 +6,13 @@ import java.util.Scanner;
 public class Profesor extends Persona {
 
     private static Scanner sc = new Scanner(System.in); // Static para evitar múltiples instancias del Scanner
-    protected  String disciplina;
-    private static ArrayList<Profesor> profesores = new ArrayList<>(); // Static para que haya una única lista compartida
+
+    protected String disciplina;
+    public static ArrayList<Profesor> profesores = new ArrayList<>(); // Static para que haya una única lista compartida
+
+    public static ArrayList<Profesor> getProfesores() {
+        return profesores;
+    }
 
     // Constructor vacío
     public Profesor() {
@@ -37,14 +42,17 @@ public class Profesor extends Persona {
         Profesor nuevoProfesor = new Profesor(nombre, dni, correo, disciplina);
         profesores.add(nuevoProfesor);
 
+        ClasesAbstractFactory factory = new ClasesConcrectFactory();
+        Clases newClass = factory.getClases(nuevoProfesor);
+
     }
 
     // Método para mostrar todos los profesores registrados
-    public void mostrarProfesores() {
+    public static void mostrarProfesores() {
         if (profesores.isEmpty()) {
             System.out.println("No hay profesores registrados.");
         } else {
-            System.out.println("Lista de profesores:");
+            System.out.println("Lista profes:");
             for (Profesor prof : profesores) {
                 prof.mostrarInfo();
             }

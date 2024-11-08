@@ -114,7 +114,7 @@ public class profesorAlumno extends javax.swing.JFrame {
                                 .addComponent(txtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
                                 .addComponent(txtPlan))
                             .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(314, Short.MAX_VALUE))
+                .addContainerGap(316, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelMain4Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(btnAsignar, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -187,6 +187,11 @@ public class profesorAlumno extends javax.swing.JFrame {
         btnBdd.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         btnBdd.setForeground(new java.awt.Color(0, 0, 0));
         btnBdd.setText("Base de datos");
+        btnBdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBddActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -217,7 +222,8 @@ public class profesorAlumno extends javax.swing.JFrame {
 
         lblNombre.setFont(new java.awt.Font("Monocraft", 1, 36)); // NOI18N
         lblNombre.setForeground(new java.awt.Color(0, 0, 0));
-        lblNombre.setText("             GIMNASIO JAVA");
+        lblNombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblNombre.setText("Java Training Center");
         lblNombre.setToolTipText("");
         lblNombre.setAlignmentX(300.0F);
         lblNombre.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
@@ -227,11 +233,11 @@ public class profesorAlumno extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 958, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(panelMain4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -295,33 +301,30 @@ public class profesorAlumno extends javax.swing.JFrame {
             String nombre = txtNombre.getText();
             int dni = Integer.parseInt(txtDni.getText());
             String correo = txtCorreo.getText();
+            String plan = txtPlan.getText();
 
-            Alumno.inscribirAlumno(nombre, dni, correo);
+            Alumno.inscribirAlumno(nombre, dni, correo, plan);
 
             JOptionPane.showMessageDialog(rootPane, "Cliente registrado correctamente.");
             // Limpiar los campos si es necesario
-            txtNombre.setText("");
-            txtDni.setText("");
-            txtCorreo.setText("");
-            txtPlan.setText("");
+            limpiarCampo();
 
         } else if ("Profesores".equalsIgnoreCase(selection)) {
             String nombre = txtNombre.getText();
             int dni = Integer.parseInt(txtDni.getText());
             String correo = txtCorreo.getText();
+            if (!correoValido(correo)) {
+                JOptionPane.showMessageDialog(this, "Correo electrónico inválido. Por favor, ingrese uno válido.");
+                return;
+            }
             String disciplina = txtDisciplina.getText();
 
             Profesor.agregarProfesor(nombre, dni, correo, disciplina);
-            ClasesAbstractFactory factory = new ClasesConcrectFactory();
-            Clases newClass = factory.getClases(new Profesor(nombre, dni, correo, disciplina));
 
             JOptionPane.showMessageDialog(rootPane, "Profesor registrado correctamente.");
             // Limpiar los campos si es necesario
-            txtNombre.setText("");
-            txtDni.setText("");
-            txtCorreo.setText("");
-            txtPlan.setText("");
-            txtDisciplina.setText("");
+
+            limpiarCampo();
 
         }
     }//GEN-LAST:event_btnAsignarActionPerformed
@@ -337,7 +340,31 @@ public class profesorAlumno extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnPlanesActionPerformed
 
+    private void btnBddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBddActionPerformed
+        Bdd bdd = new Bdd();
+        bdd.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnBddActionPerformed
 
+    private boolean correoValido(String correo) {
+        String regex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
+        return correo.matches(regex);
+    }
+
+    private void limpiarCampo() {
+        txtNombre.setText("");
+        txtDni.setText("");
+        txtCorreo.setText("");
+        if (btnCombo.getSelectedItem().equals("Profesores")) {
+            txtDisciplina.setText("");
+        }
+        if (btnCombo.getSelectedItem().equals("Alumnos")) {
+            txtPlan.setText("");
+        }
+
+    }
+
+   
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlumnoProfesor;
     private javax.swing.JButton btnAsignar;
