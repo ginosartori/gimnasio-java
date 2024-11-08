@@ -49,6 +49,7 @@ public class Alumno extends Persona {
     }
 
     //Método para asignarle a un alumno un tipo de entrenamiento o tipos de entrenamientos.
+<<<<<<< HEAD
     /**
      * @return the contadorId
      *
@@ -58,6 +59,8 @@ public class Alumno extends Persona {
      */
     public int getAlumnoID() {
         return alumnoID;
+=======
+>>>>>>> 25922ec068c36a4e20351f227951dd86027e860e
     }
 
     /**
