@@ -5,9 +5,9 @@ import java.util.Scanner;
 
 public class Alumno extends Persona {
 
-    protected String plan;
+    private String plan;
     private int alumnoID;
-    public static ArrayList<Alumno> alumnos = new ArrayList<>();
+    private static ArrayList<Alumno> alumnos = new ArrayList<>();
 
     public static ArrayList<Alumno> getAlumnos() {
         return alumnos;
@@ -29,20 +29,20 @@ public class Alumno extends Persona {
 
     // Getter para el ID del alumno
     // Método para inscribir un alumno
-    public static void inscribirAlumno(String nombre, int dni, String correo, String plan) {
+    public static void inscribirAlumno(String nombre,  int dni, String correo, String plan) {
 
         Alumno nuevoAlumno = new Alumno(nombre, dni, correo, plan);
-        alumnos.add(nuevoAlumno);
+        getAlumnos().add(nuevoAlumno);
 
     }
 
     // Método para mostrar los alumnos inscriptos
     public void alumnosInscriptos() {
-        if (alumnos.isEmpty()) {
+        if (getAlumnos().isEmpty()) {
             System.out.println("No hay alumnos inscriptos.");
         } else {
             System.out.println("Lista de alumnos inscriptos:");
-            for (Alumno alumn : alumnos) {
+            for (Alumno alumn : getAlumnos()) {
                 alumn.mostrarInfo();
             }
         }
@@ -51,6 +51,10 @@ public class Alumno extends Persona {
     public int getAlumnoID() {
         return alumnoID;
 
+    }
+    
+    public int obtenerDni(){
+        return super.getDni();
     }
 
     /**

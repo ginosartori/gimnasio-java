@@ -10,18 +10,23 @@ import gimnasio.ClasesAbstractFactory;
 import gimnasio.ClasesConcrectFactory;
 import gimnasio.Profesor;
 import javax.swing.JOptionPane;
+import persistencia.Database;
+import persistencia.Guardado;
 
 /**
  *
  * @author usuario
  */
 public class profesorAlumno extends javax.swing.JFrame {
+    
+    private Profesor Profesor;
 
     /**
      * Creates new form profesorAlumno
      */
     public profesorAlumno() {
         initComponents();
+        
     }
 
     /**
@@ -259,7 +264,7 @@ public class profesorAlumno extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAlumnoProfesorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlumnoProfesorActionPerformed
-
+        
 
     }//GEN-LAST:event_btnAlumnoProfesorActionPerformed
 
@@ -271,7 +276,7 @@ public class profesorAlumno extends javax.swing.JFrame {
 
     private void btnComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComboActionPerformed
         String seleccion = btnCombo.getSelectedItem().toString();
-
+        
         if ("Alumnos".equalsIgnoreCase(seleccion)) {
             txtNombre.setVisible(true);
             txtDni.setVisible(true);
@@ -281,7 +286,7 @@ public class profesorAlumno extends javax.swing.JFrame {
             txtDisciplina.setVisible(false);
             labelP.setVisible(true);
         }
-
+        
         if ("Profesores".equalsIgnoreCase(seleccion)) {
             txtNombre.setVisible(true);
             txtDni.setVisible(true);
@@ -291,29 +296,30 @@ public class profesorAlumno extends javax.swing.JFrame {
             txtPlan.setVisible(false);
             labelD.setVisible(true);
         }
-
+        
 
     }//GEN-LAST:event_btnComboActionPerformed
 
     private void btnAsignarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsignarActionPerformed
+        Guardado guardado = new Guardado();
         String selection = btnCombo.getSelectedItem().toString();
         if ("Alumnos".equalsIgnoreCase(selection)) {
             String nombre = txtNombre.getText();
             int dni = Integer.parseInt(txtDni.getText());
             String correo = txtCorreo.getText();
             String plan = txtPlan.getText();
-
+            
             if (!txtPlan.getText().equalsIgnoreCase("Musculación") && !txtPlan.getText().equalsIgnoreCase("Yoga")) {
                 JOptionPane.showMessageDialog(rootPane, "Por favor, ingrese un plan dentro de los existentes.");
                 return;
             }
-
-            Alumno.inscribirAlumno(nombre, dni, correo, plan);
-
-            JOptionPane.showMessageDialog(rootPane, "Cliente registrado correctamente.");
-            // Limpiar los campos si es necesario
+            
+            Alumno alumno = new Alumno(nombre, dni, correo, plan);
+            
+            guardado.guardarAlumno(alumno);
+            
             limpiarCampo();
-
+            
         } else if ("Profesores".equalsIgnoreCase(selection)) {
             String nombre = txtNombre.getText();
             int dni = Integer.parseInt(txtDni.getText());
@@ -323,14 +329,13 @@ public class profesorAlumno extends javax.swing.JFrame {
                 return;
             }
             String disciplina = txtDisciplina.getText();
-
-            Profesor.agregarProfesor(nombre, dni, correo, disciplina);
-
-            JOptionPane.showMessageDialog(rootPane, "Profesor registrado correctamente.");
-            // Limpiar los campos si es necesario
-
+            
+            Profesor profesor = new Profesor(nombre, dni, correo, disciplina);
+            
+            guardado.guardarProfesores(profesor);
+            
             limpiarCampo();
-
+            
         }
     }//GEN-LAST:event_btnAsignarActionPerformed
 
@@ -372,12 +377,12 @@ public class profesorAlumno extends javax.swing.JFrame {
         bdd.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnBddActionPerformed
-
+    
     private boolean correoValido(String correo) {
         String regex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
         return correo.matches(regex);
     }
-
+    
     private void limpiarCampo() {
         txtNombre.setText("");
         txtDni.setText("");
@@ -388,7 +393,7 @@ public class profesorAlumno extends javax.swing.JFrame {
         if (btnCombo.getSelectedItem().equals("Alumnos")) {
             txtPlan.setText("");
         }
-
+        
     }
 
 
