@@ -1,39 +1,33 @@
 package persistencia;
 
-import gimnasio.Alumno;
-import gimnasio.Profesor;
-import java.awt.Component;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-
 
 public class Database {
 
     // Variable estática para mantener la conexión única
     private static Connection connection;
-    private Component parentComponent;
 
     private Database() {
     }
 
-    //Metodo que crea la conexion.
+    // Método que crea o reutiliza la conexión
     public static Connection connect() {
-        if (connection == null) {
-            String url = "jdbc:sqlite:gimnasio.db";
-            try {
-                //Si no existe la conexion, intenta establecerla (recomendacion de gpt)
+        try {
+            // Verifica si la conexión es nula o está cerrada antes de reutilizarla
+            if (connection == null || connection.isClosed()) {
+                String url = "jdbc:sqlite:gimnasio.db"; // Ruta de la base de datos
                 connection = DriverManager.getConnection(url);
                 System.out.println("Conexión exitosa a la base de datos.");
-            } catch (SQLException e) {
-                System.out.println("Error de conexión: " + e.getMessage());
             }
+        } catch (SQLException e) {
+            System.out.println("Error de conexión: " + e.getMessage());
         }
-        // Devuelve la conexión única
         return connection;
     }
 
-    // Método para cerrar la conexión si es necesario
+    // Método para cerrar la conexión
     public static void closeConnection() {
         try {
             if (connection != null && !connection.isClosed()) {
@@ -44,6 +38,4 @@ public class Database {
             System.out.println("Error al cerrar la conexión: " + e.getMessage());
         }
     }
-
-    
 }

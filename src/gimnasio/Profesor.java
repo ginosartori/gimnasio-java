@@ -28,7 +28,10 @@ public class Profesor extends Persona {
     public String getDisciplina() {
         return disciplina;
     }
-
+    
+    public int obtenerDni(){
+        return super.getDni();
+    }
     // Método para mostrar información del profesor
     @Override
     public void mostrarInfo() {

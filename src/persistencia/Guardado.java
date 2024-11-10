@@ -20,34 +20,36 @@ import static persistencia.Database.connect;
 public class Guardado {
 
     private Component parentComponent;
+
     //Metodo para guardar alumnos en la base de datos
-    public void guardarAlumno(Alumno alumno) {
-        String sql = "INSERT INTO Alumnos (nombre, dni, correo, plan) VALUES (?, ?, ?, ?)";
+    public void guardarAlumno(Alumno alumn) {
+        String sql = "INSERT INTO Alumnos (nombre, documento, correo, plan) VALUES (?, ?, ?, ?)";
         try (Connection conn = connect(); PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setString(1, alumno.getNombre());
-            ps.setInt(2, alumno.obtenerDni());
-            ps.setString(3, alumno.getCorreo());
-            ps.setString(4, alumno.getPlan());
+            ps.setString(1, alumn.getNombre());
+            ps.setInt(2, alumn.obtenerDni());
+            ps.setString(3, alumn.getCorreo());
+            ps.setString(4, alumn.getPlan());
             ps.executeUpdate();
             JOptionPane.showMessageDialog(parentComponent, "Alumno guardado correctamente.");
 
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(parentComponent, "Error al registrar el alumno.");
+            JOptionPane.showMessageDialog(parentComponent, "Error al registrar el alumno." + e.getMessage());
         }
     }
 
-    public void guardarProfesores(Profesor profesor) {
-        String sql = "INSERT INTO Profesores (nombre, dni, correo, disciplina) VALUES (?, ?, ?, ?)";
+    public void guardarProfesores(Profesor profe) {
+        String sql = "INSERT INTO Profesores (nombre, documento, correo, disciplina) VALUES (?, ?, ?, ?)";
         try (Connection conn = connect(); PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setString(1, profesor.getNombre());
-            ps.setInt(2, profesor.getDni());
-            ps.setString(3, profesor.getCorreo());
-            ps.setString(4, profesor.getDisciplina());
+            ps.setString(1, profe.getNombre());
+            ps.setInt(2, profe.obtenerDni());
+            ps.setString(3, profe.getCorreo());
+            ps.setString(4, profe.getDisciplina());
             ps.executeUpdate();
             JOptionPane.showMessageDialog(parentComponent, "Profesor guardado correctamente.");
 
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(parentComponent, "Error al registrar al profesor.");
+            JOptionPane.showMessageDialog(parentComponent, "Error al registrar al profesor." + e.getMessage());
         }
     }
+    
 }

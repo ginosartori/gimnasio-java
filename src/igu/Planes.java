@@ -28,8 +28,6 @@ public class Planes extends javax.swing.JFrame {
 
         jPopupMenu1 = new javax.swing.JPopupMenu();
         panelMain = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -45,21 +43,16 @@ public class Planes extends javax.swing.JFrame {
         panelMain.setForeground(new java.awt.Color(0, 0, 0));
         panelMain.setAlignmentX(1.0F);
 
-        jLabel1.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel1.setText("Va una imagen de cada plan en cada cuadrado");
-        jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        jLabel2.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel2.setText("jLabel1");
-        jLabel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
         jLabel3.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/igu/WhatsApp Image 2024-11-10 at 15.43.27.jpeg"))); // NOI18N
         jLabel3.setText("jLabel1");
         jLabel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel4.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/igu/WhatsApp Image 2024-11-10 at 15.34.50 (1).jpeg"))); // NOI18N
         jLabel4.setText("jLabel1");
         jLabel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel4.setMaximumSize(new java.awt.Dimension(618, 23));
 
         javax.swing.GroupLayout panelMainLayout = new javax.swing.GroupLayout(panelMain);
         panelMain.setLayout(panelMainLayout);
@@ -67,27 +60,19 @@ public class Planes extends javax.swing.JFrame {
             panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelMainLayout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addGroup(panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 26, Short.MAX_VALUE)
-                .addGroup(panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(25, 25, 25))
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelMainLayout.setVerticalGroup(
             panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelMainLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelMainLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 15, Short.MAX_VALUE)
-                .addGroup(panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 303, Short.MAX_VALUE)
+                .addGroup(panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(24, 24, 24))
+                .addGap(17, 17, 17))
         );
 
         jPanel2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
@@ -227,8 +212,6 @@ public class Planes extends javax.swing.JFrame {
     private javax.swing.JButton btnBdd;
     private javax.swing.JButton btnDisciplina;
     private javax.swing.JButton btnPlanes;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel2;

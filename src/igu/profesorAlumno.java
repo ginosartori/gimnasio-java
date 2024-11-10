@@ -9,6 +9,7 @@ import gimnasio.Clases;
 import gimnasio.ClasesAbstractFactory;
 import gimnasio.ClasesConcrectFactory;
 import gimnasio.Profesor;
+import java.sql.Connection;
 import javax.swing.JOptionPane;
 import persistencia.Database;
 import persistencia.Guardado;
@@ -18,7 +19,7 @@ import persistencia.Guardado;
  * @author usuario
  */
 public class profesorAlumno extends javax.swing.JFrame {
-    
+
     private Profesor Profesor;
 
     /**
@@ -26,7 +27,7 @@ public class profesorAlumno extends javax.swing.JFrame {
      */
     public profesorAlumno() {
         initComponents();
-        
+
     }
 
     /**
@@ -262,9 +263,9 @@ public class profesorAlumno extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    Connection conn = Database.connect();
     private void btnAlumnoProfesorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlumnoProfesorActionPerformed
-        
+
 
     }//GEN-LAST:event_btnAlumnoProfesorActionPerformed
 
@@ -276,7 +277,7 @@ public class profesorAlumno extends javax.swing.JFrame {
 
     private void btnComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComboActionPerformed
         String seleccion = btnCombo.getSelectedItem().toString();
-        
+
         if ("Alumnos".equalsIgnoreCase(seleccion)) {
             txtNombre.setVisible(true);
             txtDni.setVisible(true);
@@ -286,7 +287,7 @@ public class profesorAlumno extends javax.swing.JFrame {
             txtDisciplina.setVisible(false);
             labelP.setVisible(true);
         }
-        
+
         if ("Profesores".equalsIgnoreCase(seleccion)) {
             txtNombre.setVisible(true);
             txtDni.setVisible(true);
@@ -296,7 +297,7 @@ public class profesorAlumno extends javax.swing.JFrame {
             txtPlan.setVisible(false);
             labelD.setVisible(true);
         }
-        
+
 
     }//GEN-LAST:event_btnComboActionPerformed
 
@@ -308,18 +309,18 @@ public class profesorAlumno extends javax.swing.JFrame {
             int dni = Integer.parseInt(txtDni.getText());
             String correo = txtCorreo.getText();
             String plan = txtPlan.getText();
-            
+
             if (!txtPlan.getText().equalsIgnoreCase("Musculación") && !txtPlan.getText().equalsIgnoreCase("Yoga")) {
                 JOptionPane.showMessageDialog(rootPane, "Por favor, ingrese un plan dentro de los existentes.");
                 return;
             }
-            
-            Alumno alumno = new Alumno(nombre, dni, correo, plan);
-            
-            guardado.guardarAlumno(alumno);
-            
+
+            Alumno alumn = new Alumno(nombre, dni, correo, plan);
+
+            guardado.guardarAlumno(alumn);
+
             limpiarCampo();
-            
+
         } else if ("Profesores".equalsIgnoreCase(selection)) {
             String nombre = txtNombre.getText();
             int dni = Integer.parseInt(txtDni.getText());
@@ -329,13 +330,13 @@ public class profesorAlumno extends javax.swing.JFrame {
                 return;
             }
             String disciplina = txtDisciplina.getText();
-            
-            Profesor profesor = new Profesor(nombre, dni, correo, disciplina);
-            
-            guardado.guardarProfesores(profesor);
-            
+
+            Profesor profe = new Profesor(nombre, dni, correo, disciplina);
+
+            guardado.guardarProfesores(profe);
+
             limpiarCampo();
-            
+
         }
     }//GEN-LAST:event_btnAsignarActionPerformed
 
@@ -377,12 +378,12 @@ public class profesorAlumno extends javax.swing.JFrame {
         bdd.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnBddActionPerformed
-    
+
     private boolean correoValido(String correo) {
         String regex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
         return correo.matches(regex);
     }
-    
+
     private void limpiarCampo() {
         txtNombre.setText("");
         txtDni.setText("");
@@ -393,7 +394,7 @@ public class profesorAlumno extends javax.swing.JFrame {
         if (btnCombo.getSelectedItem().equals("Alumnos")) {
             txtPlan.setText("");
         }
-        
+
     }
 
 
