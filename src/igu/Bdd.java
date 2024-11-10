@@ -26,7 +26,7 @@ public class Bdd extends javax.swing.JFrame {
      */
     public Bdd() {
         initComponents();
-
+        // este es el codigo que hay que modificar para que recorra la base de datos y no las listas de profesores o alumnos.
         String ids[] = {"Tipo", "Nombre", "Documento", "Correo Electrónico", "Disciplina", "Plan"};
         mt.setColumnIdentifiers(ids);
         jTable1.setModel(mt);
@@ -206,6 +206,7 @@ public class Bdd extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
     private void btnAlumnoProfesorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlumnoProfesorActionPerformed
         profesorAlumno newframe = new profesorAlumno();
         newframe.setVisible(true);

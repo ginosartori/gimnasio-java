@@ -240,6 +240,7 @@ public class Disciplina extends javax.swing.JFrame {
 
         ArrayList<Profesor> profesores = Profesor.getProfesores();
 
+        //Tambien hay qyue ver esto para que muestre profesores de acuerdo a la seleccion de clase y que muestre lo de la base de datos, no lo de las listas.
         switch (seleccion) {
             case "Musculación":
                 for (Profesor profes : profesores) {
