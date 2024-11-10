@@ -21,8 +21,8 @@ public class Guardado {
 
     private Component parentComponent;
     //Metodo para guardar alumnos en la base de datos
-    public void guardarAlumno(Alumno alumno) throws SQLException {
-        String sql = "INSERT TO Alumnos (nombre, dni, correo, plan) VALUES (?, ?, ?, ?)";
+    public void guardarAlumno(Alumno alumno) {
+        String sql = "INSERT INTO Alumnos (nombre, dni, correo, plan) VALUES (?, ?, ?, ?)";
         try (Connection conn = connect(); PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, alumno.getNombre());
             ps.setInt(2, alumno.obtenerDni());
@@ -37,7 +37,7 @@ public class Guardado {
     }
 
     public void guardarProfesores(Profesor profesor) {
-        String sql = "INSERT TO Profesores (nombre, dni, correo, disciplina) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO Profesores (nombre, dni, correo, disciplina) VALUES (?, ?, ?, ?)";
         try (Connection conn = connect(); PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, profesor.getNombre());
             ps.setInt(2, profesor.getDni());
